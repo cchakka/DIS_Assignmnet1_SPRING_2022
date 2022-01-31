@@ -80,18 +80,25 @@ namespace DIS_Assignmnet1_SPRING_2022
         {
             try
             {
-                char[] c = s.ToCharArray();
-                String final_string = "";
-                for (int i = 0; i < c.Length; i++)
-                {                   
+                
+                char[] c = s.ToCharArray(); // To Convert string to Characrter array
+                String final_string = ""; // Empty String Further USed in the loop for Concatanation.
+                for (int i = 0; i < c.Length; i++) 
+                {                
+                    // If Condidtion to check all lower case and upper case Vowels
                     if (c[i] != 'a' && c[i] != 'e' && c[i] != 'i' && c[i] != 'o' && c[i] != 'u' && c[i] != 'A' && c[i] != 'E' && c[i] != 'I' && c[i] != 'O' && c[i] != 'U')
                     {
-                        final_string = final_string + c[i];
+                        final_string = final_string + c[i]; // to concat all characters except the vowels
                     }
 
                 }
                 
                 return final_string;
+                /* Self-reflection 
+                 * Time Taken is 20 min
+                 * Learning is difference between & and && as well as || function.
+                 * Also about IndexOf.
+                 */
             }
             catch (Exception)
             {
@@ -124,24 +131,30 @@ namespace DIS_Assignmnet1_SPRING_2022
         {
             try
             {
-                string s1 = "";
-                string s2 = "";
-                for (int i = 0; i < bulls_string1.Length; i++)
+                string s1 = ""; // Used to Concat all String values in the Array bulls_string1
+                string s2 = "";//Used to Concat all String values in the Array bulls_String2
+                for (int i = 0; i < bulls_string1.Length; i++) // Running the for till the length of the array
                 {
-                    s1 = s1 + bulls_string1[i];
+                    s1 = s1 + bulls_string1[i]; // Concating all string in the array bulls_string1
                 }
-                for (int i = 0; i < bulls_string2.Length; i++)
+                for (int i = 0; i < bulls_string2.Length; i++)// Running the for till the length of the array
                 {
-                    s2 = s2 + bulls_string2[i];
+                    s2 = s2 + bulls_string2[i]; // Concating all string in the array bulls_string2
                 }
-                if (s1 == s2)
+                // Not changing the string to lower case as we are comparing with case sentivity
+                if (s1 == s2) // if both the string are equal flag will return as true
                 {
                     return true;
                 }
-                else
+                else // else that is if both the strings are not equal the flag will return as false. 
                 {
                     return false;
                 }
+                /*Self -Reflection
+                 * Time-Taken - 20 min
+                 * Here we are comparing the strings with Case senstivity so we didn't use .tolower function
+                 * 
+                 */
             }
             catch (Exception)
             {
@@ -173,29 +186,38 @@ namespace DIS_Assignmnet1_SPRING_2022
         {
             try
             {
-                int sum = 0;
-                for (int i = 0; i < bull_bucks.Length; i++)
+                /*
+                 * In this problem verified each value whether it is unique or not by comparing with other all other value
+                 * if the value unique the adding the sum of the value else ignoring the value.
+                 */
+                int sum = 0; // Declaration of the variable sum used further to store sum of unique values
+                for (int i = 0; i < bull_bucks.Length; i++) // loop to run till the length of the array
                 {
-                    bool con = true;
-                    int j = 0;
-                    while (con == true && j < bull_bucks.Length)
+                    bool con = true; // bool flag decalaration for while loop which helps to stop the loop for condition.
+                    int j = 0; // j declaration used to increment array in the loop
+                    while (con == true && j < bull_bucks.Length) // To continue the loop only till flag is true and till end of the length of array
                     {
-                        if (i != j)
+                        if (i != j) // Checking the condition so same values in the array are not checked
                         {
-                            if (bull_bucks[i] == bull_bucks[j])
+                            if (bull_bucks[i] == bull_bucks[j]) // checking whether the current index value is equal to any other value
                             {
-                                con = false;
+                                con = false; // if we reveive any value equal then changing the bool value as false to exit from the loop.
                             }
 
                         }
-                        j = j + 1;
+                        j = j + 1; // incrementing the j value to verify the next element in the array
                     }
-                    if (con == true)
+                    if (con == true) // if the flag is still true means the i th position value in the array is unique. If flag is false that means i th position value if the array is not unique
                     {
-                        sum = sum + bull_bucks[i];
+                        sum = sum + bull_bucks[i]; // adding all the unique value of the array
                     }
                 }
                 return sum;
+                /*Self-reflection 
+                 * Time Taken: 30 min
+                 * Learning is the usage of all loops and flag properly in single code.
+                 */
+
 
             }
             catch (Exception)
@@ -225,23 +247,34 @@ namespace DIS_Assignmnet1_SPRING_2022
         {
             try
             {
-                int n1 = bulls_grid.GetLength(0);
+                int n1 = bulls_grid.GetLength(0); // to get length of the matrix
                 int n2 = bulls_grid.GetLength(1);
                 int sum = 0;
-                if (n1 == n2 && n1 != 0)
+                if (n1 == n2 && n1 != 0) // verifying whether the input is square matrix and is not an empty array
                 {
+                    /* Diagonal elements of the array are in the position of 
+                     * [ considering n as last index of the matrix]
+                     * (i,i) --> (0,0),(1,1)....(n,n) --> first diagonal
+                     * (n-i,i) ---> (n,0),(n-1,1)...(1,n-1),(0,n) --> Second diagonal
+                     * for example in 3x3 matrix diagonal positions are
+                     * (0,0),(1,1),(2,2),(2,0),(2,2),(0,2)
+                     */
                     for (int i = 0; i < n1; i++)
                     {
-                        sum = sum + bulls_grid[i, i] + bulls_grid[((n1 - 1) - i), i];
+                        sum = sum + bulls_grid[i, i] + bulls_grid[((n1 - 1) - i), i]; // adding the values of the diagonal of the matrix
                     }
-                    if (n1 % 2 != 0)
+                    if (n1 % 2 != 0) // for odd length matrix middle value repeat in diagonal1 and diagonal2.So deleting the repeated value from the sum
                     {
-                        int r = (n1 - 1) / 2;
-                        sum = sum - bulls_grid[r, r];
+                        int r = (n1 - 1) / 2; // for middle value index of the odd matrix
+                        sum = sum - bulls_grid[r, r]; // deleting the repeative value.
                     }
                 }
 
                 return sum;
+                /*Self-reflection 
+                 * Time taken : 20 min
+                 * Learning is multi-dimensinal array
+                 */
             }
             catch (Exception e)
             {
@@ -269,22 +302,35 @@ namespace DIS_Assignmnet1_SPRING_2022
         {
             try
             {
-                char[] c = bulls_string.ToCharArray();
-                string s = "";
-                for (int i = 0; i < c.Length; i++)
+                /* In this Converted the string to character array then verified in the loop regarding indices position.
+                 * Then Concating the string with character as per the indices index.
+                 */
+                char[] c = bulls_string.ToCharArray(); // Converting to character array
+                string s = ""; 
+                for (int i = 0; i < c.Length; i++) // for String index
                 {
-                    for (int j = 0; j < c.Length; j++)
+                    for (int j = 0; j < c.Length; j++) // for indices index
 
                     {
-                        if (i == indices[j])
+                        if (i == indices[j])  
+                        /*
+                         * to know the i th index value in indices array location
+                         * like to know 0th value index is in which position in the indices array 
+                         * for example, when i=0 then here we checking at what index value of indices array we have the value of 0.
+                         * j value indicate the index position where 0 is located in indices array
+                         * So we know that first character of the string is in j th index value in the character array or the string.
+                         */
                         {
-                            s = s + c[j];
+                            s = s + c[j]; // concating the string with the character as per the indices location
 
                         }
 
                     }
                 }
                 return s;
+                /* Self-reflection 
+                 * Time Taken : 30 min
+                 */
             }
             catch (Exception e)
             {
@@ -318,44 +364,54 @@ namespace DIS_Assignmnet1_SPRING_2022
 
         private static string ReversePrefix(string bulls_string6, char ch)
         {
+            /* In this problem verified the first index position of the character.
+             * Then reversing the string from that position the start and storing in a string
+             * Then adding the remaing character in the string post the character index position to different string
+             * Then adding both first and second string to get new string
+             */
             try
             {
                 char[] s = bulls_string6.ToCharArray();
                 bool con = true;
                 int i = 0;
                 int j = 0;
-                while (con == true && i < bulls_string6.Length)
+                while (con == true && i < bulls_string6.Length) // to continue the loop till we get the index location of the character till the length of the array
                 {
-                    if (s[i] == ch)
+                    if (s[i] == ch) 
                     {
-                        con = false;
-                        j = i;
+                        con = false; // if at i th index position we get the given character then changing flag to false to end the loop
+                        j = i; // storing the index value in j
                     }
                     i = i + 1;
                 }
-                if (con == true)
+                if (con == true) // if flag is still true means there is no character "ch" in the string so we don't have reverse any string
                 {
                     return bulls_string6;
                 }
                 else
                 {
-                    string s2 = "";
+                    string s2 = ""; 
                     string s1 = "";
                     for (int z = i; z < bulls_string6.Length; z++)
                     {
-                        s2 += s[z];
+                        s2 += s[z]; // Concating the character post the character index value.
                     }
                     for (int a = 0; a <= j; a++)
                     {
-                        s1 += s[j - a];
+                        s1 += s[j - a]; // Reversing and concating the character along with the index position
                     }
                     String prefix_string = s1 + s2;
                     return prefix_string;
                 }
+                /* Self-reflection 
+                 * Time Taken : 30 min
+                 * Recommendation: Can use IndexOf(char x) for simplication instead of while and if loop.
+                 * Code:
+                 * int j = bulls_string6.IndexOf(ch);
+                 */
             }
             catch (Exception)
             {
-
                 throw;
             }
 
